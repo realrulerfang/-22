@@ -583,7 +583,7 @@ function go(n){if(animating||n===cur||n<0||n>=slides.length)return;animating=tru
   slides[cur].classList.remove('active');cur=n;render();setTimeout(()=>animating=false,300);}
 function next(){go(cur+1);}function prev(){go(cur-1);}
 /* ---- D-key: open the live demo site over the deck ---- */
-const DEMO_URL='https://testnet.botanary.xyz';
+const DEMO_URL='https://botanary.org';
 let demoOpen=false;
 const demoEl=document.getElementById('demo'),demoFrame=document.getElementById('dframe');
 function openDemo(){demoOpen=true;if(!demoFrame.getAttribute('src'))demoFrame.setAttribute('src',DEMO_URL);demoEl.classList.add('on');demoEl.setAttribute('aria-hidden','false');}
