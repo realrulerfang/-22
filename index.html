@@ -3,6 +3,7 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta name="virtual-protocol-site-verification" content="ae4b92829489215b8552d50304d0a338" />  
 <title>Botanary</title>
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -214,6 +215,16 @@ html,body{height:100%;background:var(--bg);color:var(--text);font-family:var(--f
 .dbar #dclose:hover{color:var(--text);border-color:var(--green-line)}
 #dframe{flex:1;width:100%;border:0;background:#0a0c0a}
 
+/* CA copy line above cover badge */
+.ca-tag{display:inline-flex;align-items:center;gap:9px;font-family:var(--font-mono);font-size:clamp(12px,1.1vw,14px);color:var(--text-2);
+  background:var(--panel);border:1px solid var(--line);border-radius:999px;padding:9px 16px;cursor:pointer;transition:border-color .25s,color .25s,background .25s}
+.ca-tag:hover{border-color:var(--green-line);color:var(--green-bright);background:var(--green-050)}
+.ca-tag .ca-label{color:var(--text-3);letter-spacing:.1em;text-transform:uppercase;font-size:.8em}
+.ca-tag .ca-val{color:var(--text)}
+.ca-tag.copied .ca-val{display:none}
+.ca-tag .ca-copied-msg{display:none;color:var(--green-bright)}
+.ca-tag.copied .ca-copied-msg{display:inline}
+
 /* ================= RESPONSIVE ================= */
 
 /* --- laptop / tablet: narrow the rail, let the flow diagram wrap --- */
@@ -248,6 +259,7 @@ html,body{height:100%;background:var(--bg);color:var(--text);font-family:var(--f
   .stat{font-size:clamp(58px,19vw,104px)!important}
   .chip{font-size:13px;padding:9px 15px}
   .badge svg{width:60px;height:60px}
+  .ca-tag{font-size:11px;padding:7px 12px}
 
   /* stack every multi-column block */
   .row3{grid-template-columns:1fr!important;gap:12px!important;max-width:100%!important}
@@ -365,6 +377,9 @@ html,body{height:100%;background:var(--bg);color:var(--text);font-family:var(--f
 <!-- 1 COVER -->
 <section data-slide data-ch="0">
   <div class="wrap">
+    <div class="rv ca-tag" id="caTag" style="--i:0;margin-bottom:18px" role="button" tabindex="0" title="Click to copy contract address">
+      <span class="ca-label">CA</span><span class="ca-val">soon</span><span class="ca-copied-msg">Copied ✓</span>
+    </div>
     <div class="rv" style="--i:0;margin-bottom:34px"><span class="badge"><svg width="84" height="84" viewBox="0 0 1254 1254"><rect width="1254" height="1254" rx="288" fill="#0f1310"/><use href="#bmark"/></svg></span></div>
     <h1 class="display" style="margin-top:8px;font-size:clamp(40px,5.4vw,80px)">
       <span class="mask"><span>The Smart Wallet &amp;</span></span>
@@ -608,6 +623,18 @@ function openDemo(){demoOpen=true;if(!demoFrame.getAttribute('src'))demoFrame.se
 function closeDemo(){demoOpen=false;demoEl.classList.remove('on');demoEl.setAttribute('aria-hidden','true');window.focus();}
 function toggleDemo(){demoOpen?closeDemo():openDemo();}
 document.getElementById('dclose').onclick=closeDemo;
+
+/* ---- CA copy-to-clipboard ---- */
+const caTag=document.getElementById('caTag');
+function copyCA(){
+  const addr='soon';
+  const done=()=>{caTag.classList.add('copied');setTimeout(()=>caTag.classList.remove('copied'),1600);};
+  if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(addr).then(done).catch(done);}
+  else{const ta=document.createElement('textarea');ta.value=addr;document.body.appendChild(ta);ta.select();
+    try{document.execCommand('copy');}catch(e){}document.body.removeChild(ta);done();}
+}
+caTag.addEventListener('click',copyCA);
+caTag.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();copyCA();}});
 
 addEventListener('keydown',e=>{
   const k=e.key.toLowerCase();
