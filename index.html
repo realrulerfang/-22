@@ -163,6 +163,13 @@ html,body{height:100%;background:var(--bg);color:var(--text);font-family:var(--f
 #nav .dots i{width:7px;height:7px;border-radius:50%;background:rgba(255,255,255,.2);transition:.3s;cursor:pointer}
 #nav .dots i.on{background:var(--green);width:20px;border-radius:4px}
 
+/* rail social buttons */
+#rsocial{display:flex;flex-direction:column;gap:10px;margin-top:18px}
+#rsocial a{width:36px;height:36px;border-radius:10px;display:flex;align-items:center;justify-content:center;
+  border:1px solid var(--line);background:var(--panel);color:var(--text-2);transition:border-color .3s,color .3s,background .3s}
+#rsocial a:hover{border-color:var(--green-line);color:var(--green-bright);background:var(--green-050)}
+#rsocial a svg{width:16px;height:16px}
+
 /* two-tone: forest slides */
 .slide.forest{background:radial-gradient(85% 75% at 50% -12%,rgba(119,185,141,.22),transparent 60%),radial-gradient(60% 50% at 50% 122%,rgba(177,155,255,.10),transparent 55%),linear-gradient(180deg,#123021,#0b1c13)}
 
@@ -331,6 +338,17 @@ html,body{height:100%;background:var(--bg);color:var(--text);font-family:var(--f
 <div id="prog"></div>
 <div id="rail">
   <svg class="rmk" viewBox="0 0 1254 1254"><use href="#bmark"/></svg>
+  <div id="rsocial">
+    <a href="https://x.com/botanary_xyz" target="_blank" rel="noopener" title="Twitter / X" aria-label="Twitter / X">
+      <svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.9 2H22l-7.6 8.7L23.3 22h-7l-5.5-7.1L4.5 22H1.4l8.1-9.3L1 2h7.2l5 6.6L18.9 2Zm-1.2 18h1.7L7.4 3.9H5.6L17.7 20Z"/></svg>
+    </a>
+    <a href="https://github.com/Botanary" target="_blank" rel="noopener" title="GitHub" aria-label="GitHub">
+      <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.58 2 12.2c0 4.5 2.87 8.32 6.84 9.67.5.1.68-.22.68-.49 0-.24-.01-1.03-.01-1.87-2.78.62-3.37-1.21-3.37-1.21-.46-1.2-1.11-1.52-1.11-1.52-.9-.63.07-.62.07-.62 1 .07 1.53 1.05 1.53 1.05.89 1.56 2.34 1.11 2.91.85.09-.66.35-1.11.63-1.37-2.22-.26-4.56-1.14-4.56-5.06 0-1.12.39-2.03 1.03-2.75-.1-.26-.45-1.31.1-2.73 0 0 .84-.28 2.75 1.05a9.3 9.3 0 0 1 5 0c1.9-1.33 2.75-1.05 2.75-1.05.55 1.42.2 2.47.1 2.73.64.72 1.03 1.63 1.03 2.75 0 3.93-2.34 4.8-4.57 5.05.36.32.68.94.68 1.9 0 1.37-.01 2.48-.01 2.82 0 .27.18.6.69.49A10.02 10.02 0 0 0 22 12.2C22 6.58 17.52 2 12 2Z"/></svg>
+    </a>
+    <a href="https://botanary.xyz/waitlist" target="_blank" rel="noopener" title="Waitlist" aria-label="Waitlist">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16v16H4z" opacity="0"/><path d="M22 6 12 13 2 6"/><path d="M2 6h20v12H2z"/></svg>
+    </a>
+  </div>
   <div id="rnav"></div>
   <div class="rpage"><span id="pgn">01</span></div>
 </div>
@@ -338,7 +356,7 @@ html,body{height:100%;background:var(--bg);color:var(--text);font-family:var(--f
 <div id="hint">← →  ·  D demo  ·  F</div>
 <div id="deck"></div>
 <div id="demo" aria-hidden="true">
-  <div class="dbar"><span class="ddot"></span>Live demo · botanary.org<a id="dopen" href="https://botanary.org" target="_blank" rel="noopener">Open in new tab ↗</a><button id="dclose">esc ✕ back to deck</button></div>
+  <div class="dbar"><span class="ddot"></span>Live demo · testnet.botanary.xyz<a id="dopen" href="https://testnet.botanary.xyz" target="_blank" rel="noopener">Open in new tab ↗</a><button id="dclose">esc ✕ back to deck</button></div>
   <iframe id="dframe" title="Botanary live demo" referrerpolicy="no-referrer" allow="clipboard-read; clipboard-write"></iframe>
 </div>
 
@@ -545,7 +563,7 @@ html,body{height:100%;background:var(--bg);color:var(--text);font-family:var(--f
       <span class="mask"><span>Own the <span class="g">trust layer.</span></span></span>
     </h2>
     <p class="lead rv" style="--i:1;margin:28px auto 0;max-width:32ch">Institutions don't ask how smart the agent is. They ask <b class="g">what's the worst it can do.</b> The answer is an account, not a prompt.</p>
-    <div class="cta rv" style="--i:2"><span class="chip"><span class="dot"></span>testnet.botanary.xyz</span></div>
+    <div class="cta rv" style="--i:2"><span class="chip"><span class="dot"></span>botanary.org</span></div>
   </div>
 </section>
 
@@ -583,7 +601,7 @@ function go(n){if(animating||n===cur||n<0||n>=slides.length)return;animating=tru
   slides[cur].classList.remove('active');cur=n;render();setTimeout(()=>animating=false,300);}
 function next(){go(cur+1);}function prev(){go(cur-1);}
 /* ---- D-key: open the live demo site over the deck ---- */
-const DEMO_URL='https://botanary.org';
+const DEMO_URL='https://testnet.botanary.xyz';
 let demoOpen=false;
 const demoEl=document.getElementById('demo'),demoFrame=document.getElementById('dframe');
 function openDemo(){demoOpen=true;if(!demoFrame.getAttribute('src'))demoFrame.setAttribute('src',DEMO_URL);demoEl.classList.add('on');demoEl.setAttribute('aria-hidden','false');}
