@@ -378,7 +378,7 @@ html,body{height:100%;background:var(--bg);color:var(--text);font-family:var(--f
 <section data-slide data-ch="0">
   <div class="wrap">
     <div class="rv ca-tag" id="caTag" style="--i:0;margin-bottom:18px" role="button" tabindex="0" title="Click to copy contract address">
-      <span class="ca-label">CA</span><span class="ca-val">soon</span><span class="ca-copied-msg">Copied ✓</span>
+      <span class="ca-label">CA</span><span class="ca-val">0x7aa9f822fd770a21eaa4b0630bfc7a9e01ce5b7f</span><span class="ca-copied-msg">Copied ✓</span>
     </div>
     <div class="rv" style="--i:0;margin-bottom:34px"><span class="badge"><svg width="84" height="84" viewBox="0 0 1254 1254"><rect width="1254" height="1254" rx="288" fill="#0f1310"/><use href="#bmark"/></svg></span></div>
     <h1 class="display" style="margin-top:8px;font-size:clamp(40px,5.4vw,80px)">
@@ -627,7 +627,7 @@ document.getElementById('dclose').onclick=closeDemo;
 /* ---- CA copy-to-clipboard ---- */
 const caTag=document.getElementById('caTag');
 function copyCA(){
-  const addr='soon';
+  const addr='0x7aa9f822fd770a21eaa4b0630bfc7a9e01ce5b7f';
   const done=()=>{caTag.classList.add('copied');setTimeout(()=>caTag.classList.remove('copied'),1600);};
   if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(addr).then(done).catch(done);}
   else{const ta=document.createElement('textarea');ta.value=addr;document.body.appendChild(ta);ta.select();
